@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+lb config noauto \
+    --distribution bookworm \
+    --architecture amd64 \
+    --debian-installer true \
+    --debian-installer-gui false \
+    --bootloader grub-efi \
+    --bootloader grub-pc \
+    --linux-flavours amd64 \
+    --iso-publisher "Fusion Flux" \
+    --iso-volume "Fusion Flux Installer" \
+    --iso-application "Fusion Flux AI/ML Distribution" \
+    --apt-indices false \
+    --firmware-binary true \
+    --firmware-chroot true \
+    --archive-areas "main contrib non-free non-free-firmware" \
+    "${@}"

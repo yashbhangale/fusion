@@ -1,0 +1,10 @@
+PRETTY_NAME="Fusion Linux"
+NAME="Fusion"
+VERSION_ID="1.0"
+VERSION="1.0 (Bookworm)"
+VERSION_CODENAME=bookworm
+ID=fusion
+ID_LIKE=debian
+HOME_URL="https://your-fusion-website.com/"
+SUPPORT_URL="https://your-fusion-website.com/support"
+BUG_REPORT_URL="https://your-fusion-website.com/bugs"
