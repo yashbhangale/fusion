@@ -1,0 +1,130 @@
+# set modifier
+set $super Mod4
+set $alt Mod1
+
+# set font
+font pango: Noto Sans 8
+
+# Use Mouse+$super to drag floating windows to their wanted position
+floating_modifier $super
+# exec --no-startup-id nitrogen --restore
+
+# Autostart applications
+exec --no-startup-id feh --bg-scale /usr/share/backgrounds/wallpaper.jpg
+exec --no-startup-id dunst &
+exec --no-startup-id picom -b  # Replacing compton with picom
+exec --no-startup-id xsettingsd &
+exec --no-startup-id nm-applet &  # NetworkManager Applet
+exec --no-startup-id flameshot &  # Start Flameshot at startup
+
+# Set Alacritty as the default terminal
+bindsym $super+Return exec terminator
+
+# Start rofi as application launcher
+bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
+
+# Bind Flameshot for screenshots
+bindsym Print exec flameshot gui
+
+# Lock screen with i3lock using custom wallpaper
+bindsym $super+w exec i3lock -i /usr/share/backgrounds/wallpaper.jpg
+
+# Launch common applications
+bindsym $super+Shift+w exec firefox
+bindsym $super+Shift+f exec thunar
+bindsym $super+Shift+g exec geany
+
+# Volume control
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+bindsym XF86AudioMute exec amixer set Master toggle
+
+# Kill focused window
+bindsym $super+x kill
+bindsym $alt+F4 kill
+
+# Change focus
+bindsym $super+h focus left
+bindsym $super+j focus down
+bindsym $super+k focus up
+bindsym $super+l focus right
+
+# Move focused window
+bindsym $super+Shift+h move left
+bindsym $super+Shift+j move down
+bindsym $super+Shift+k move up
+bindsym $super+Shift+l move right
+
+# Split in horizontal and vertical orientation
+bindsym $super+s split h
+bindsym $super+v split v
+
+# Fullscreen mode
+bindsym $super+f fullscreen toggle
+
+# Change container layout
+bindsym $super+t layout stacking
+bindsym $super+y layout tabbed
+bindsym $super+e layout toggle split
+
+# Toggle floating
+bindsym $super+space floating toggle
+
+# Switch workspace
+bindsym $super+1 workspace 1
+bindsym $super+2 workspace 2
+bindsym $super+3 workspace 3
+
+# Move focused container to workspace
+bindsym $super+Shift+1 move container to workspace 1
+bindsym $super+Shift+2 move container to workspace 2
+bindsym $super+Shift+3 move container to workspace 3
+
+# Restart i3
+bindsym $super+Shift+r restart
+
+# Exit i3
+bindsym $super+q exec "i3-nagbar -t warning -m 'Really exit?' -b 'Yes' 'i3-msg exit'"
+
+# Resize window
+mode "resize" {
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
+    bindsym Return mode "default"
+}
+bindsym $super+r mode "resize"
+
+# i3 bar configuration
+bar {
+    status_command i3status
+    colors {
+        background #2e2d2d
+        statusline #FDFFC2
+        separator #4b5262
+        focused_workspace #FDFFC2 #640D5F #000000
+        active_workspace  #FDFFC2 #FDFFC2 #000000
+        inactive_workspace #FDFFC2 #FDFFC2 #000000
+        urgent_workspace  #FDFFC2 #ebcb8b #FDFFC2
+    }
+}
+
+# Window rules for floating windows
+for_window [class="Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol"] floating enable
+for_window [class=URxvt|Firefox|Geany|Evince|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc] focus
+
+# Client window colors
+client.focused              #640D5F #640D5F #d8dee8 #640D5F #640D5F
+client.focused_inactive     #FDFFC2 #FDFFC2 #d8dee8 #FDFFC2 #FDFFC2
+client.unfocused            #FDFFC2 #FDFFC2 #d8dee8 #FDFFC2 #FDFFC2
+client.urgent               #FDFFC2 #FDFFC2 #d8dee8 #FDFFC2 #FDFFC2
+client.background           #FDFFC2
+
+# Autostart xrandr for monitor setup
+exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+
+bindsym $mod+v floating toggle
+bindsym $mod+Shift+q kill
+
+for_window [class=".*"] floating enable

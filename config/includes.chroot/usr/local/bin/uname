@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Call the real uname and replace "Debian" with "Fusion"
+/bin/uname "$@" | sed 's/Debian/Fusion/g'

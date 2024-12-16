@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Remove Calamares after installation
+apt-get purge --yes calamares
+

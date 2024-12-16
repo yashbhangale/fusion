@@ -7,17 +7,27 @@ calamares
 calamares-settings-debian
                             
 awesome
+i3
+i3lock
 dmenu
 terminator
 thunar
 nitrogen
+lxrandr
+htop
+screenfetch
+neofetch
+mousepad
+firefox-esr
 lightdm
+btop
 
 awesome-extra
 rofi
 compton
 feh
 lxappearance
+flameshot
 
 grub-pc
 

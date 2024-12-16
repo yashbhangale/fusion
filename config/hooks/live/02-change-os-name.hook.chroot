@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Change OS name from Debian to fusion
+sed -i 's/Debian/fusion/g' /etc/issue
+sed -i 's/Debian/fusion/g' /etc/os-release
+sed -i 's/Debian/fusion/g' /etc/motd

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Add 'fusion' user with password 'fusion'
+#useradd -m -s /bin/bash fusion
+#echo 'fusion:fusion' | chpasswd
+
+# Add 'fusion' to sudoers
+#echo 'fusion ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/fusion
+#chmod 0440 /etc/sudoers.d/fusion
+
+
+# Set root password to 'root'
+echo 'root:root' | chpasswd
