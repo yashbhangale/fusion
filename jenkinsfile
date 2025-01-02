@@ -1,0 +1,46 @@
+pipeline {
+    agent {
+        docker {
+            image 'yashuop/fusionguibuildcontainer'
+            args '-v /home/jenkins/workspace:/home/fusion' // Adjust volume path if needed
+        }
+    }
+    environment {
+        REPO_URL = 'https://github.com/yashbhangale/fusion.git'
+        BUILD_DIR = '/home/fusion'
+    }
+    stages {
+        stage('Clone Repository') {
+            steps {
+                echo "Cloning the repository..."
+                sh "git clone ${env.REPO_URL} ${env.BUILD_DIR}/fusion"
+            }
+        }
+        stage('Build Distribution') {
+            steps {
+                echo "Building the distribution..."
+                dir("${env.BUILD_DIR}/fusion") {
+                    sh 'lb config'
+                    sh 'lb build'
+                }
+            }
+        }
+        stage('Archive Artifacts') {
+            steps {
+                echo "Archiving the build output..."
+                archiveArtifacts artifacts: '/home/fusion/fusion/*.iso', fingerprint: true
+            }
+        }
+    }
+    post {
+        success {
+            echo "Build completed successfully!"
+        }
+        failure {
+            echo "Build failed. Check the logs for details."
+        }
+        always {
+            cleanWs()
+        }
+    }
+}
