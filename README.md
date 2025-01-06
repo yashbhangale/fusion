@@ -1,7 +1,7 @@
 # fusion
+![image](https://github.com/user-attachments/assets/66b98a2e-fd1c-4a71-aac9-566808c18dbf)
 
 ### Pull premade docker image
-
 ```
 docker pull yashuop/fusionguibuildcontainer:latest
 ```
@@ -156,3 +156,5 @@ lb config noauto \
 ```
 qemu-system-x86_64 -cdrom '/home/fusion/Desktop/live-image-amd64.hybrid.iso' -boot d -m 3000
 ```
+
+![image](https://github.com/user-attachments/assets/2273d44d-f296-4a3e-9c76-e61ac5ce4eca)
