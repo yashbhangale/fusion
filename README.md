@@ -10,7 +10,7 @@ docker pull yashuop/fusionguibuildcontainer:latest
 ### run container locally
 
 ```
-sudo docker run --privileged -it -v /var/lib/docker/volumes/fusiondata/_data:/home/fusion debian /bin/bash
+sudo docker run --privileged -it --memory=3g --cpus=6 -v /home/yash/Desktop/project/fusion:/home/fusion yashuop/fusionguibuildcontainer:latest /bin/bash
 ```
 
 > here my git repo is in folder "/var/lib/docker/volumes/fusiondata/_data" so adjust accordingly
